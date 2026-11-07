@@ -1,0 +1,5 @@
+# 方舟终端 bundle patch：把本包挂进 profile 插件树。
+# 安装方式：让 DSH 的插件管理器安装本目录（plugin_manager install_bundle，target 为本目录绝对路径）。
+- insert:
+    - id: novel-terminal
+      name: dsh-novel-arkterminal

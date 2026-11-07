@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "asi-1939",
+  "title": "方舟终端",
+  "subtitle": "剧情未载入",
+  "language": "zh",
+  "version": 1,
+  "start": "empty",
+  "characters": [],
+  "nodes": {
+    "empty": {
+      "chapter": "待机",
+      "title": "未载入剧情",
+      "blocks": [
+        { "type": "system", "text": "方舟终端已就绪。剧情数据尚未载入。" },
+        { "type": "narration", "text": "可以通过「设置 → 剧情与编辑 → 从 Markdown 导入」，或在编辑器里新建节点；也可以直接在下方输入一段开场，交给 AI 接着写。" }
+      ],
+      "choices": [
+        { "id": "ai", "label": "让 AI 生成开场（参考世界书设定）", "next": null, "ai": true }
+      ],
+      "input": { "enabled": true, "placeholder": "输入开场，或留空让 AI 开始…", "continueWithAI": true },
+      "worldbook": []
+    }
+  }
+}

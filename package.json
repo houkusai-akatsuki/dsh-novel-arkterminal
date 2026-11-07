@@ -1,0 +1,57 @@
+{
+  "name": "dsh-novel-arkterminal",
+  "version": "0.1.0",
+  "description": "方舟终端：可视化可交互小说终端（CRT 风格；支持 AI 续写、长篇剧情导入、剧情编辑器、世界书、存档与终端内设置）",
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "lib",
+    "locale",
+    "story",
+    "scripts",
+    "src",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.0-rc.1"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build-client.mjs",
+    "check": "node --check lib/index.js && node --check lib/story.js && node --check lib/store.js && node --check lib/ai.js && node --check lib/importer.js && node --check lib/routes.js && node --check lib/client.js",
+    "test": "node test/core.test.mjs && node test/story-store.test.mjs && node test/worldbook.test.mjs && node test/client.test.mjs",
+    "import": "node scripts/import-manuscript.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "interactive-fiction",
+    "visual-novel",
+    "crt",
+    "terminal"
+  ],
+  "license": "MIT"
+}
