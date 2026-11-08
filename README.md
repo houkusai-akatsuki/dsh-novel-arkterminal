@@ -99,7 +99,7 @@ node scripts/import-manuscript.mjs
 - 模型必须返回结构化 JSON（blocks + choices + 可选 reasoning/plans/memoryAppend）；校验失败会修复重试一次，仍失败则报错且不写盘。
 - **最大 token 默认 2400，上限 256000**（V4.1-Flash 上下文 1M；DeepSeek Messages 适配器默认单次完成上限 256k）。输出被 token 上限截断时（`finish: max-tokens`）会自动把预算翻倍重试一次；仍失败则报 `ai_truncated`，提示调大「最大 token」或缩短文风/思维链模板。旧版本地设置里的 1200 会自动迁移到 2400，越界值收敛到 400–256000。
 - **传输错误自动重试**：遇到 `DeepSeek Messages transport failed` 等网络/上游错误，会以 1.5s、4s、8s 退避自动重试 3 次（共 4 次尝试）；仍失败报 `ai_transport` 并提示检查网络/代理。任务超时为 600s。
-- **玩家角色**：世界书中 id 为 `wb-player`（或标题含「玩家角色」）的条目会始终注入 AI 提示词，并标注【玩家角色】；续写视角、叙述信息范围与选项都以该角色为准。当前 1939 故事里玩家操控的是**爱丽丝（A11CE）**，毛泽东为主要 NPC。
+- **玩家角色**：世界书中 id 为 `wb-player`（或标题含「玩家角色」）的条目会始终注入 AI 提示词，并标注【玩家角色】；续写视角、叙述信息范围与选项都以该角色为准。
 - **单章字数**：设置 → AI 续写 → 单章字数（默认 800，范围 200–20000）。该目标会写进 prompt 的【本次篇幅】并决定分段提示（最多 32 段）；token 预算按 `字数 × 2 + 800` 自动估算，最终取它与「最大 token」中的较大值（上限 256000）。
 - 成功的结果写入 `generated/continuations.jsonl`，同时追加 `memory.md`、可选更新 `plans.json`；不修改 `story.json`。
 - 单故事同时只运行一个续写任务，可取消，超时 600s。
